@@ -1,0 +1,204 @@
+:root {
+  --violet: hsl(263, 55%, 52%);
+  --grayish-blue: hsl(217, 19%, 35%);
+  --blackish-blue: hsl(219, 29%, 14%);
+  --white: hsl(0, 0%, 100%);
+
+  --light-gray: hsl(0, 0%, 81%);
+  --light-grayish-blue: hsl(210, 46%, 95%);
+
+  --primary-color-100: var(--violet);
+  --primary-color-200: var(--grayish-blue);
+  --primary-color-300: var(--blackish-blue);
+  --primary-color-400: var(--white);
+
+  --neutral-color-100: var(--light-gray);
+  --neutral-color-200: var(--light-grayish-blue);
+
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-500);
+  background-color: var(--neutral-color-200);
+}
+
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+main {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.testimonials {
+  width: calc(100% - 4.8rem);
+  max-width: 111rem;
+  margin-block: 7rem;
+  display: grid;
+  gap: 2.2rem;
+  grid-template:
+    "t1"
+    "t2"
+    "t3"
+    "t4"
+    "t5" / auto;
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-inline: 3rem;
+  padding-block: 2.4rem 3.4rem;
+  background-color: var(--bgc, transparent);
+  border-radius: 1rem;
+}
+
+.testimonial__user {
+  display: grid;
+  grid-template:
+    "image name" auto
+    "image status" auto / auto 1fr;
+  column-gap: 1.4rem;
+}
+
+.user-testimonial__image {
+  grid-area: image;
+  width: 3.2rem;
+  border-radius: 50%;
+}
+
+.user-testimonial__name {
+  grid-area: name;
+  align-self: end;
+  color: var(--clr-name, black);
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-500);
+}
+
+.user-testimonial__status {
+  grid-area: status;
+  font-size: 1.2rem;
+  opacity: 0.5;
+  color: var(--clr-status, black);
+}
+
+.testimonial__title {
+  font-size: 2.1rem;
+  color: var(--clr-title, black);
+  font-weight: var(--font-weight-600);
+  flex-grow: 1;
+}
+
+.testimonial__description {
+  line-height: 1.5;
+  opacity: 0.7;
+  color: var(--clr-description, black);
+}
+
+.quote {
+  position: relative;
+  z-index: 1;
+}
+
+.quote::after {
+  content: "";
+  position: absolute;
+  inset: 0 3rem 0 0;
+  background-image: url(../images/bg-pattern-quotation.svg);
+  background-repeat: no-repeat;
+  background-position-x: right;
+  z-index: -1;
+}
+
+[data-testimonial-theme="violet"] {
+  --clr-name: var(--neutral-color-200);
+  --clr-status: var(--neutral-color-100);
+  --clr-title: var(--primary-color-400);
+  --clr-description: var(--neutral-color-200);
+  --bgc: var(--primary-color-100);
+}
+
+[data-testimonial-theme="gray"] {
+  --clr-name: var(--neutral-color-200);
+  --clr-status: var(--neutral-color-100);
+  --clr-title: var(--primary-color-400);
+  --clr-description: var(--neutral-color-200);
+  --bgc: var(--primary-color-200);
+}
+
+[data-testimonial-theme="white"] {
+  --clr-name: var(--primary-color-300);
+  --clr-status: var(--primary-color-200);
+  --clr-title: var(--primary-color-200);
+  --clr-description: var(--primary-color-200);
+  --bgc: var(--primary-color-400);
+}
+
+[data-testimonial-theme="black"] {
+  --clr-name: var(--primary-color-400);
+  --clr-status: var(--neutral-color-200);
+  --clr-title: var(--primary-color-400);
+  --clr-description: var(--neutral-color-200);
+  --bgc: var(--primary-color-300);
+}
+
+.testimonial:first-of-type {
+  grid-area: t1;
+}
+
+.testimonial:nth-of-type(2) {
+  grid-area: t2;
+}
+
+.testimonial:nth-of-type(3) {
+  grid-area: t3;
+}
+
+.testimonial:nth-of-type(4) {
+  grid-area: t4;
+}
+
+.testimonial:last-of-type {
+  grid-area: t5;
+}
+@media screen and (min-width: 37.5em) {
+  .testimonials {
+    grid-template:
+      "t1 t2" auto
+      "t1 t3" auto
+      "t4 t5" auto / auto auto;
+  }
+}
+
+@media screen and (min-width: 56.25em) {
+  .testimonials {
+    grid-template:
+      "t1 t1 t2 t5" auto
+      "t3 t4 t4 t5" auto / 1fr 1fr 1fr 1fr;
+  }
+
+  .quote::after {
+    inset: 0 8rem 0 0;
+  }
+}
